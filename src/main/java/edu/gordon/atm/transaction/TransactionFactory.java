@@ -2,6 +2,7 @@ package edu.gordon.atm.transaction;
 
 import edu.gordon.atm.Session;
 import edu.gordon.atm.physical.CustomerConsole;
+import edu.gordon.atm.physical.Keyboard;
 import edu.gordon.banking.Card;
 
 
@@ -19,8 +20,8 @@ import edu.gordon.banking.Card;
  *         of choosing a transaction type
  */
 public class TransactionFactory {
-	public Transaction makeTransaction(Session session,Card card, int pin) throws CustomerConsole.Cancelled {
-		int choice = session.getAtm().getCustomerConsole().readMenuChoice("Please choose transaction type", TRANSACTION_TYPES_MENU);
+	public Transaction makeTransaction(Session session,Card card, int pin) throws Keyboard.Cancelled {
+		int choice = session.getAtm().getKeyboard().readMenuChoice("Please choose transaction type", TRANSACTION_TYPES_MENU);
         if(choice == 0)
             return new Withdrawal(session, card, pin);
         else if(choice == 1)
